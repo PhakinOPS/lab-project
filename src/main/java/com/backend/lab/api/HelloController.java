@@ -1,13 +1,13 @@
-package com.backend.lab.controller;
+package com.backend.lab.api;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class helloWorld {
+public class HelloController {
+
     @GetMapping("/hello")
-    public String hello(){
-        String res = "Hello World!!!";
-        return res;
+    public String helloWorld(){
+        return "Hello World!!!";
     }
 }
