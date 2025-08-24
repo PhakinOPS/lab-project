@@ -11,7 +11,7 @@ public class ReverseSmallString {
             // ให้ค่าสุดท้าย s[right] เท่ากับ temp
             char temp = s[left];
             s[left] = s[right];
-            s[right] = s[left];
+            s[right] = temp;
 
             // ขยับตำแหน่งเริ่มต้นขึ้น และ ตำแหน่งสุดท้ายลงเพื่อนเลื่อนลำดับที่ต้องการสลับตำแหน่ง
             left++;
@@ -20,8 +20,8 @@ public class ReverseSmallString {
     }
 
     public static void main(String[] args) {
-        ReverseString solver = new ReverseString();
-        char[] input = {'H', 'e', 'l', 'l', 'o'};
+        ReverseSmallString solver = new ReverseSmallString();
+        char[] input = {'h', 'e', 'l', 'l', 'o'};
         solver.reverseString(input);
         System.out.println(input);
     }

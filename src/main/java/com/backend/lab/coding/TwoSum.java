@@ -8,6 +8,10 @@ public class TwoSum {
 
         for (int i = 0; i < nums.length; i++) {
             int complement = target - nums[i];
+            // ตรวจสอบว่า มีค่า complement เป็น key ใน map หรือยัง
+            // ถ้ายังไม่มีให้เก็บ nums[i] ลง map
+            // ถ้ามี เอา value ของ complement มาใส่ใน arrat int และ ตำแหน่ง i ปัจจุบันของลูป
+            // value คือ ตำแหน่งของตัวเลขใน array int ที่เป็น input
             if (map.containsKey(complement)) {
                 return new int[]{map.get(complement), i};
             }

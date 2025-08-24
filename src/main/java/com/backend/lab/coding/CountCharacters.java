@@ -6,7 +6,7 @@ public class CountCharacters {
     public void countCharacter(String s) {
         HashMap<Character, Integer> map = new HashMap<>();
         // array int แทนจำนวนตัวอักษรภาษาอังกฤษทั้งหมด 26 ตัวอักษร
-        int[] count = new int[26];
+        //int[] count = new int[26];
 
         for(int i=0; i<s.length(); i++){
             char c = s.charAt(i);
