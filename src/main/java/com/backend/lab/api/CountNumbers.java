@@ -1,4 +1,4 @@
-package com.backend.lab.coding;
+package com.backend.lab.api;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
