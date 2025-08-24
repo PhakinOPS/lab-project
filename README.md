@@ -29,3 +29,14 @@
 - ตัวอย่าง POST /sum Body JSON:
 ```json
 [2,7,11,15]
+
+### Features Added in Session 1
+- Task model with `id`, `title`, `description`
+- In-memory CRUD operations via `TaskService`
+- REST endpoints in `TaskController`:
+  - GET /tasks
+  - GET /tasks/{id}
+  - POST /tasks
+  - PUT /tasks/{id}
+  - DELETE /tasks/{id}
+- Tested endpoints using Postman
