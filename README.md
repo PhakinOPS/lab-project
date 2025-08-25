@@ -40,3 +40,21 @@
   - PUT /tasks/{id}
   - DELETE /tasks/{id}
 - Tested endpoints using Postman
+
+# Starter Mini Project#
+# Task Management API (Spring Boot Starter Template)
+
+## 📌 Overview
+This is a **Spring Boot Starter Template** for building RESTful APIs with:
+- **CRUD operations** (Create, Read, Update, Delete)
+- **Pagination & Filtering** using Spring Data JPA `Specification`
+- **Layered Architecture**: Controller → Service → Repository
+
+You can easily adapt it for any entity (e.g., Product, User) by:
+1. Changing the `Entity` fields
+2. Updating `Specification` filters
+3. Adjusting API request/response as needed
+
+---
+
+## 🗂 Project Structure

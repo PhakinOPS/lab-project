@@ -1,49 +1,57 @@
 package com.backend.lab.project.service;
 
-import com.backend.lab.project.model.Task;
+import com.backend.lab.project.entity.Task;
+import com.backend.lab.project.repository.TaskRepository;
+import com.backend.lab.project.specification.TaskSpecification;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.*;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class TaskService {
-    private final List<Task> tasks = new ArrayList<>();
-    private int nextId = 1;
 
-    public List<Task> getAllTasks() {
-        return tasks;
-    }
+    private final TaskRepository taskRepository;
 
-    public Task getTaskById(int id) {
-        return tasks.stream()
-                .filter(t -> t.getId() == id)
-                .findFirst()
-                .orElse(null);
-    }
-
+    // Create
     public Task createTask(Task task) {
-        task.setId(nextId++);
-        tasks.add(task);
-        return task;
+        return taskRepository.save(task);
     }
 
-    public Task updateTask(int id, Task updatedTask) {
-        Optional<Task> existingTask = tasks.stream()
-                .filter(t -> t.getId() == id)
-                .findFirst();
+    // Read (with Pagination + Filtering)
+    public Page<Task> getTasks(String status, String keyword, int page, int size) {
+        Specification<Task> spec = TaskSpecification.hasStatus(status)
+                .and(TaskSpecification.titleContains(keyword));
 
-        if (existingTask.isPresent()) {
-            Task task = existingTask.get();
+
+        Pageable pageable = PageRequest.of(page, size, Sort.by("id").descending());
+
+        return taskRepository.findAll(spec, pageable);
+    }
+
+    // Read by ID
+    public Optional<Task> getTaskById(Long id) {
+        return taskRepository.findById(id);
+    }
+
+    // Update
+    public Optional<Task> updateTask(Long id, Task updatedTask) {
+        return taskRepository.findById(id).map(task -> {
             task.setTitle(updatedTask.getTitle());
-            task.setDescription(updatedTask.getDescription());
-            return task;
-        }
-        return null;
+            task.setStatus(updatedTask.getStatus());
+            return taskRepository.save(task);
+        });
     }
 
-    public boolean deleteTask(int id) {
-        return tasks.removeIf(t -> t.getId() == id);
+    // Delete
+    public boolean deleteTask(Long id) {
+        if (taskRepository.existsById(id)) {
+            taskRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 }

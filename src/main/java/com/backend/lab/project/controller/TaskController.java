@@ -1,43 +1,57 @@
 package com.backend.lab.project.controller;
 
-import com.backend.lab.project.model.Task;
+import com.backend.lab.project.entity.Task;
 import com.backend.lab.project.service.TaskService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
-@RequestMapping("/task")
+@RequestMapping("/tasks")
+@RequiredArgsConstructor
 public class TaskController {
+
     private final TaskService taskService;
 
-    public TaskController(TaskService taskService) {
-        this.taskService = taskService;
-    }
-
-    @GetMapping
-    public List<Task> getAllTasks() {
-        return taskService.getAllTasks();
-    }
-
-    @GetMapping("/{id}")
-    public Task getTaskById(@PathVariable int id) {
-        return taskService.getTaskById(id);
-    }
-
+    // Create
     @PostMapping
-    public Task createTask(@RequestBody Task task) {
-        return taskService.createTask(task);
+    public ResponseEntity<Task> createTask(@RequestBody Task task) {
+        return ResponseEntity.ok(taskService.createTask(task));
     }
 
+    // Read (Pagination + Filtering)
+    @GetMapping
+    public ResponseEntity<Page<Task>> getTasks(
+            @RequestParam(required = false) String status,
+            @RequestParam(required = false) String keyword,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size
+    ) {
+        return ResponseEntity.ok(taskService.getTasks(status, keyword, page, size));
+    }
+
+    // Read by ID
+    @GetMapping("/{id}")
+    public ResponseEntity<Task> getTaskById(@PathVariable Long id) {
+        return taskService.getTaskById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    // Update
     @PutMapping("/{id}")
-    public Task updateTask(@PathVariable int id, @RequestBody Task task) {
-        return taskService.updateTask(id, task);
+    public ResponseEntity<Task> updateTask(@PathVariable Long id, @RequestBody Task updatedTask) {
+        return taskService.updateTask(id, updatedTask)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
+    // Delete
     @DeleteMapping("/{id}")
-    public String deleteTask(@PathVariable int id) {
-        boolean deleted = taskService.deleteTask(id);
-        return deleted ? "Task deleted" : "Task not found";
+    public ResponseEntity<Void> deleteTask(@PathVariable Long id) {
+        return taskService.deleteTask(id)
+                ? ResponseEntity.noContent().build()
+                : ResponseEntity.notFound().build();
     }
 }
