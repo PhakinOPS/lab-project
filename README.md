@@ -29,6 +29,7 @@
 - ตัวอย่าง POST /sum Body JSON:
 ```json
 [2,7,11,15]
+```
 
 ### Features Added in Session 1
 - Task model with `id`, `title`, `description`
@@ -56,9 +57,6 @@ You can easily adapt it for any entity (e.g., Product, User) by:
 3. Adjusting API request/response as needed
 
 ---
-
-## 🗂 Project Structure
-
 
 # Saturday Practice – Backend Developer Training
 
