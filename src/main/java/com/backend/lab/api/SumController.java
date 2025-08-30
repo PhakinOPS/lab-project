@@ -10,13 +10,9 @@ import java.util.List;
 public class SumController {
 
     @PostMapping("/sum")
-    public int sumArray(@RequestBody List<Integer> nums){
-        int res = 0;
-
-        for(int num: nums){
-            res += num;
-        }
-
-        return res;
+    public int sumArray(@RequestBody(required = false) List<Integer> nums){
+        if (nums == null || nums.isEmpty()) return 0;
+        return nums.stream().mapToInt(Integer::intValue).sum();
     }
+
 }

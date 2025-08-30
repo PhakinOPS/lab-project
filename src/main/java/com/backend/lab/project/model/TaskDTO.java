@@ -1,13 +1,13 @@
 package com.backend.lab.project.model;
 
-public class Task {
+public class TaskDTO {
     private int id;
     private String title;
     private String description;
 
-    public Task() {}
+    public TaskDTO() {}
 
-    public Task(int id, String title, String description) {
+    public TaskDTO(int id, String title, String description) {
         this.id = id;
         this.title = title;
         this.description = description;

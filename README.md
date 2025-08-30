@@ -58,3 +58,57 @@ You can easily adapt it for any entity (e.g., Product, User) by:
 ---
 
 ## 🗂 Project Structure
+
+
+# Saturday Practice – Backend Developer Training
+
+## Session 1 – Logic & Coding
+
+1. **Reverse Words in a Sentence**
+   - File: `ReverseWords.java`
+   - Reverse order of words in a sentence (not individual letters)
+   - Key concepts: `split()`, two-pointer, `String.join()`
+
+2. **Count Word Frequency**
+   - File: `CountWordFrequency.java`
+   - Count frequency of words (case-insensitive) and identify most frequent word
+   - Key concepts: `LinkedHashMap`, `Map.Entry`, loops
+
+3. **Two Sum**
+   - File: `TwoSum.java`
+   - Find two numbers in an array that sum up to a target using `HashMap`
+   - Time complexity: O(n)
+
+4. **Three Sum Unique**
+   - File: `ThreeSumUnique.java`
+   - Find all unique triplets that sum up to a target
+   - Approach: Sort array + two-pointer + skip duplicates
+   - Time complexity: O(n²)
+
+---
+
+## Session 2 – Backend Practice (Spring Boot)
+
+1. **GET /hello**
+   - File: `HelloController.java`
+   - Returns `"Hello World!!!"`
+
+2. **POST /sum**
+   - File: `SumController.java`
+   - Accepts JSON array and returns sum
+   - Handles empty/null array
+   - Optional: Uses Stream API for concise code
+
+3. **GET /reverse**
+   - File: `ReverseController.java`
+   - Accepts query parameter `input` and returns reversed string
+   - Uses `StringBuilder.reverse()`
+
+---
+
+## Notes / Key Takeaways
+
+- Logic & Coding: Arrays, strings, HashMap, loops, stream API
+- Backend: HTTP methods (GET/POST), JSON handling, Spring Boot controller setup
+- Controllers can be in separate files; Spring scans packages automatically
+- Prepared for Session 3 – CRUD + Database (JPA & Repository) for tomorrow
