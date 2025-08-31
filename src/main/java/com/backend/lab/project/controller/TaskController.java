@@ -26,9 +26,11 @@ public class TaskController {
             @RequestParam(required = false) String status,
             @RequestParam(required = false) String keyword,
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "5") int size
+            @RequestParam(defaultValue = "5") int size,
+            @RequestParam(defaultValue = "title") String sortBy,
+            @RequestParam(defaultValue = "asc") String sortDirection
     ) {
-        return ResponseEntity.ok(taskService.getTasks(status, keyword, page, size));
+        return ResponseEntity.ok(taskService.getTasks(status, keyword, page, size, sortBy, sortDirection));
     }
 
     // Read by ID

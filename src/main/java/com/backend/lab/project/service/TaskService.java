@@ -22,12 +22,18 @@ public class TaskService {
     }
 
     // Read (with Pagination + Filtering)
-    public Page<Task> getTasks(String status, String keyword, int page, int size) {
+    public Page<Task> getTasks(String status, String keyword,
+                               int page, int size,
+                               String sortBy, String sortDirection) {
+        //ระบุว่า sort แบบใด
+        Sort.Direction direction = sortDirection.equalsIgnoreCase("desc") ?
+                Sort.Direction.DESC : Sort.Direction.ASC;
+
         Specification<Task> spec = TaskSpecification.hasStatus(status)
                 .and(TaskSpecification.titleContains(keyword));
 
 
-        Pageable pageable = PageRequest.of(page, size, Sort.by("id").descending());
+        Pageable pageable = PageRequest.of(page, size, Sort.by(direction, sortBy));
 
         return taskRepository.findAll(spec, pageable);
     }

@@ -110,3 +110,14 @@ You can easily adapt it for any entity (e.g., Product, User) by:
 - Backend: HTTP methods (GET/POST), JSON handling, Spring Boot controller setup
 - Controllers can be in separate files; Spring scans packages automatically
 - Prepared for Session 3 – CRUD + Database (JPA & Repository) for tomorrow
+
+# Backend Lab – Task API
+
+## Features
+- CRUD (Create, Read, Update, Delete)
+- Sorting (by any field, asc/desc)
+
+## API Usage
+
+### Get Tasks with Pagination + Filtering + Sorting
+**Endpoint:**
